@@ -135,6 +135,8 @@ while True:
     if reward == 1:
       done = time.time()
       elapsed = done - start
-      print('time taken for cpu to win game: ',elapsed)
+      print('start time: ',start)
+      print('stop time: ',done)
+      print('time taken for cpu to win game [start-stop]: ',elapsed)
       print('RAM Used (GB):', psutil.virtual_memory()[3]/1000000000)
       quit()
