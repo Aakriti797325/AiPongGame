@@ -2,10 +2,11 @@
 import numpy as np
 import pickle as pickle
 import gym
+import time
 # hyperparameters
 H = 200 # number of hidden layer neurons
 batch_size = 10 # every how many episodes to do a param update?
-learning_rate = 1e-4
+learning_rate = 1e-5
 gamma = 0.99 # discount factor for reward
 decay_rate = 0.99 # decay factor for RMSProp leaky sum of grad^2
 resume = False # resume from previous checkpoint?
@@ -67,6 +68,7 @@ xs,hs,dlogps,drs = [],[],[],[]
 running_reward = None
 reward_sum = 0
 episode_number = 0
+start = time.time() #initiate time
 while True:
   if render: env.render()
 
@@ -129,3 +131,8 @@ while True:
 
   if reward != 0: # Pong has either +1 or -1 reward exactly when game ends.	
     print (('ep %d: game finished, reward: %f' % (episode_number, reward)) , ('' if reward == -1 else ' !!!!!!!!'))
+    if reward == 1:
+      done = time.time()
+      elapsed = done - start
+      print('time taken for cpu to win game: ',elapsed)
+      quit()
