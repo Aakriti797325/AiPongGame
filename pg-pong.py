@@ -3,6 +3,7 @@ import numpy as np
 import pickle as pickle
 import gym
 import time
+import psutil
 # hyperparameters
 H = 200 # number of hidden layer neurons
 batch_size = 10 # every how many episodes to do a param update?
@@ -135,4 +136,5 @@ while True:
       done = time.time()
       elapsed = done - start
       print('time taken for cpu to win game: ',elapsed)
+      print('RAM Used (GB):', psutil.virtual_memory()[3]/1000000000)
       quit()
